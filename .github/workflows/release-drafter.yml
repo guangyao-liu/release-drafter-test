@@ -2,7 +2,6 @@ name: Release Drafter
 
 on:
   push:
-    # branches to consider in the event; optional, defaults to all
     branches:
       - main
 
@@ -26,4 +25,3 @@ jobs:
         name: Release ${{ steps.generate-tag.outputs.tag }}
         tag: ${{ steps.generate-tag.outputs.tag }}
         publish: no
-        commitish: 'main'
