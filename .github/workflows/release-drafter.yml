@@ -25,6 +25,5 @@ jobs:
       with:
         name: Release ${{ steps.generate-tag.outputs.tag }}
         tag: ${{ steps.generate-tag.outputs.tag }}
-        version: ${{ steps.generate-tag.outputs.tag }}
         publish: no
-        commitish: ${{ github.sha }}
+        commitish: 'main'

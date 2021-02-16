@@ -1,14 +1,4 @@
-autolabeler:
-  - label: 'staging'
-    branch:
-      - '/^develop$/'
-  - label: 'fix'
-    branch:
-      - '/fix\/.+/'
-  - label: 'feature'
-    branch:
-      - '/feature\/.+/'
-
+commitish: 'main'
 template: |
   $CHANGES
 
