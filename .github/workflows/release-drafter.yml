@@ -1,0 +1,33 @@
+name: Release Drafter
+
+on:
+  push:
+    # branches to consider in the event; optional, defaults to all
+    branches:
+      - main
+  # pull_request event is required only for autolabeler
+  pull_request:
+    # Only following types are handled by the action, but one can default to all as well
+    types: [opened, reopened, synchronize]
+
+jobs:
+  update_release_draft:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build, tag, and push image to Amazon ECR
+      id: generate-tag
+      env:
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        echo "::set-output name=tag::`date -u +%Y%m%d%H%M%SZ`${IMAGE_TAG::7}"
+  
+    - name: Draft release
+      uses: release-drafter/release-drafter@v5
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        name: ${{ steps.generate-tag.outputs.tag }}
+        tag: ${{ steps.generate-tag.outputs.tag }}
+        version: ${{ steps.generate-tag.outputs.tag }}
+        publish: no
+        commitish: main
