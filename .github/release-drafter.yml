@@ -1,11 +1,21 @@
 autolabeler:
+  - label: 'staging'
+    branch:
+      - '/^develop$/'
   - label: 'fix'
     branch:
       - '/fix\/.+/'
   - label: 'feature'
     branch:
       - '/feature\/.+/'
+
+template: |
+  $CHANGES
+
 categories:
+  - title: '🪐 Staging Releases'
+    labels:
+      - 'staging'
   - title: '🚀 Features'
     labels:
       - 'feature'
@@ -15,7 +25,4 @@ categories:
       - 'fix'
       - 'bugfix'
       - 'bug'
-template: |
-  ## What’s Changed
 
-  $CHANGES
