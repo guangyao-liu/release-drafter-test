@@ -1,4 +1,3 @@
-commitish: 'main'
 template: |
   $CHANGES
 
